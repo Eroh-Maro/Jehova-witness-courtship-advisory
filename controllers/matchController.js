@@ -52,7 +52,7 @@ export const createMatch = asyncHandler(async (req, res) => {
     type: NOTIFICATION_TYPES.MATCH_CREATED,
     title: 'New match created',
     message: `${req.admin.name} matched ${profileA.fullName} with ${profileB.fullName}.`,
-    link: '/Admin/admin.html#matches',
+    link: '/1dama3na/admin.html#matches',
     audience: NOTIFICATION_AUDIENCE.ADMIN_AND_ABOVE,
     relatedEntity: { kind: 'Match', id: match._id },
   });
@@ -124,7 +124,7 @@ export const updateMatchStatus = asyncHandler(async (req, res) => {
     type: NOTIFICATION_TYPES.MATCH_STATUS_CHANGED,
     title: 'Match status updated',
     message: `Match between ${match.profileA.fullName} and ${match.profileB.fullName} moved to "${status}".`,
-    link: '/Admin/admin.html#matches',
+    link: '/1dama3na/admin.html#matches',
     audience: NOTIFICATION_AUDIENCE.ADMIN_AND_ABOVE,
     relatedEntity: { kind: 'Match', id: match._id },
   });

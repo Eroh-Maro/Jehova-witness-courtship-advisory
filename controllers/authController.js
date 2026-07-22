@@ -137,7 +137,7 @@ export const logout = asyncHandler(async (req, res) => {
 // @desc    Issue a new access token from a valid refresh token cookie
 // @route   POST /api/v1/auth/refresh
 export const refresh = asyncHandler(async (req, res) => {
-  const token = req.cookies?.refreshToken;
+  const token = req.signedCookies?.refreshToken;
   if (!token) throw ApiError.unauthorized("Refresh token missing");
 
   let decoded;
@@ -229,7 +229,7 @@ export const inviteAdmin = asyncHandler(async (req, res) => {
       name: admin.name,
       invitedByName: req.admin.name,
       role: admin.role,
-setupUrl: `${process.env.FRONTEND_URL}/Admin/admin-signup.html?token=${rawToken}`},
+setupUrl: `${process.env.FRONTEND_URL}/1dama3na/admin-signup.html?token=${rawToken}`},
   });
 
   await logActivity({
@@ -348,7 +348,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
     template: EMAIL_TEMPLATES.PASSWORD_RESET,
     variables: {
       name: admin.name,
-      resetUrl: `${process.env.CLIENT_URL}/Admin/reset-password.html?token=${rawToken}`,
+      resetUrl: `${process.env.CLIENT_URL}/1dama3na/reset-password.html?token=${rawToken}`,
     },
   });
 

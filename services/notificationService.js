@@ -75,7 +75,7 @@ export const createAndDispatchNotification = async (payload) => {
             variables: {
               notificationTitle: rest.title,
               notificationMessage: rest.message,
-              actionUrl: `${process.env.CLIENT_URL}${rest.link || '/Admin/admin.html'}`,
+              actionUrl: `${process.env.CLIENT_URL}${rest.link || '/1dama3na/admin.html'}`,
             },
           })
         )

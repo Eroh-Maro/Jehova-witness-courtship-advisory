@@ -35,7 +35,7 @@ const scheduleDailyAdminSummary = () => {
             pendingProfiles,
             pendingContacts,
             pendingMatches,
-            dashboardUrl: `${process.env.CLIENT_URL}/Admin/admin.html`,
+            dashboardUrl: `${process.env.CLIENT_URL}/1dama3na/admin.html`,
           },
         })
       )
@@ -71,7 +71,7 @@ const scheduleWeeklyDigest = () => {
             approvedProfiles,
             newContacts,
             newMatches,
-            dashboardUrl: `${process.env.CLIENT_URL}/Admin/admin.html`,
+            dashboardUrl: `${process.env.CLIENT_URL}/1dama3na/admin.html`,
           },
         })
       )

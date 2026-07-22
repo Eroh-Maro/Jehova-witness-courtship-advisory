@@ -13,26 +13,64 @@ import { ACTIVITY_ACTIONS, EMAIL_TEMPLATES, NOTIFICATION_TYPES, NOTIFICATION_AUD
 export const createContact = asyncHandler(async (req, res) => {
   const { name, email, phone, subject, message } = req.body;
 
-  const contact = await Contact.create({ name, email, phone, subject, message, ipAddress: req.ip });
+  const contact = await Contact.create({
+    name,
+    email,
+    phone,
+    subject,
+    message,
+    ipAddress: req.ip,
+  });
 
+  // Confirmation email to the person who submitted the form
   await queueEmail({
     to: email,
     subject: 'We received your message',
     template: EMAIL_TEMPLATES.CONTACT_CONFIRMATION,
-    variables: { name, messagePreview: message.slice(0, 200) },
+    variables: {
+      name,
+      messagePreview: message.slice(0, 200),
+    },
   });
 
+  // Contact notification sent to the church info email
+  await queueEmail({
+    to: process.env.CONTACT_NOTIFICATION_EMAIL,
+    subject: `New contact message${subject ? `: ${subject}` : ''}`,
+    template: EMAIL_TEMPLATES.ADMIN_NOTIFICATION,
+    variables: {
+      notificationTitle: 'New contact message',
+      notificationMessage: `${name} sent a message.
+
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Subject: ${subject || 'Not provided'}
+Message: ${message}`,
+      actionUrl: `${process.env.CLIENT_URL}/1dama3na/admin.html#contacts`,
+    },
+  });
+
+  // Dashboard notification for admins
   await notify({
     type: NOTIFICATION_TYPES.CONTACT_RECEIVED,
     title: 'New contact message',
     message: `${name} sent a new message${subject ? `: "${subject}"` : ''}.`,
-    link: '/Admin/admin.html#contacts',
+    link: '/1dama3na/admin.html#contacts',
     audience: NOTIFICATION_AUDIENCE.ADMIN_AND_ABOVE,
-    relatedEntity: { kind: 'Contact', id: contact._id },
-    sendEmailToo: true,
+    relatedEntity: {
+      kind: 'Contact',
+      id: contact._id,
+    },
+    sendEmailToo: false,
   });
 
-  sendSuccess(res, { statusCode: 201, message: 'Your message has been sent. We will get back to you shortly.', data: { contactId: contact._id } });
+  sendSuccess(res, {
+    statusCode: 201,
+    message: 'Your message has been sent. We will get back to you shortly.',
+    data: {
+      contactId: contact._id,
+    },
+  });
 });
 
 // @desc    List/search contact messages
