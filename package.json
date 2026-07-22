@@ -5,7 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "concurrently \"node server.js\" \"npm run worker\"",
     "worker": "node queues/worker.js",
     "seed:admin": "node utils/seedSuperAdmin.js"
   },
