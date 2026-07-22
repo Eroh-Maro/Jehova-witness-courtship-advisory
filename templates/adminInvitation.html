@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>{{platformName}}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f1ea;font-family:Georgia,'Times New Roman',serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f1ea;padding:32px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;border:1px solid #e5ddc8;">
+          <tr>
+            <td style="background-color:#1f2d3d;padding:24px 32px;">
+              <span style="color:#d4af37;font-size:20px;font-weight:bold;letter-spacing:0.5px;">{{platformName}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px;color:#333333;font-size:15px;line-height:1.6;">
+              <h2 style="color:#1f2d3d;">You have been invited as an administrator</h2>
+              <p>Dear {{name}},</p>
+              <p>{{invitedByName}} has invited you to join {{platformName}} as a <strong>{{role}}</strong>.</p>
+              <p style="text-align:center;margin:24px 0;"><a href="{{setupUrl}}" style="background-color:#1f2d3d;color:#d4af37;padding:12px 28px;text-decoration:none;border-radius:4px;font-weight:bold;">Set Up Your Account</a></p>
+              <p>This invitation link expires in 48 hours.</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#f4f1ea;padding:20px 32px;color:#888888;font-size:12px;text-align:center;">
+              &copy; {{year}} {{platformName}}. This is an automated message, please do not reply directly to this email.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
