@@ -5,7 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-       "start": "concurrently \"node server.js\" \"npm run worker\"",
+    "start": "concurrently \"node server.js\" \"npm run worker\"",
     "worker": "node queues/worker.js",
     "seed:admin": "node utils/seedSuperAdmin.js"
   },
@@ -17,6 +17,7 @@
     "bullmq": "^5.7.8",
     "cloudinary": "^2.2.0",
     "compression": "^1.7.4",
+    "concurrently": "^10.0.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
