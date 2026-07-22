@@ -23,12 +23,10 @@ const logger = winston.createLogger({
   exceptionHandlers: [new winston.transports.File({ filename: path.join(logsDir, 'exceptions.log') })],
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(
-    new winston.transports.Console({
-      format: combine(colorize(), timestamp(), logFormat),
-    })
-  );
-}
+logger.add(
+  new winston.transports.Console({
+    format: combine(timestamp(), logFormat),
+  })
+);
 
 export default logger;
