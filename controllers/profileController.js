@@ -115,7 +115,19 @@ export const searchProfiles = asyncHandler(async (req, res) => {
     assignmentStatus, assignedAdmin,
   } = req.query;
 
-  if (q) filter.$text = { $search: q };
+if (q?.trim()) {
+  const term = q.trim();
+
+  filter.$or = [
+    { memberId: new RegExp(term, "i") },
+    { firstName: new RegExp(term, "i") },
+    { lastName: new RegExp(term, "i") },
+    { country: new RegExp(term, "i") },
+    { state: new RegExp(term, "i") },
+    { city: new RegExp(term, "i") },
+    { congregation: new RegExp(term, "i") },
+  ];
+}
   if (memberId) filter.memberId = new RegExp(memberId, 'i');
   if (name) {
     filter.$or = [{ firstName: new RegExp(name, 'i') }, { lastName: new RegExp(name, 'i') }];
